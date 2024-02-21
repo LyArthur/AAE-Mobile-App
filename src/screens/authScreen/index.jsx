@@ -1,6 +1,6 @@
-import {View, Text, StyleSheet, StatusBar} from "react-native";
+import {View, StyleSheet, StatusBar} from "react-native";
 import React from "react";
-import {Login, Register} from "./components";
+import {Login} from "./components";
 
 export const AuthScreen = ({navigation}) => {
     return (

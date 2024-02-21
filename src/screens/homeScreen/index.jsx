@@ -8,7 +8,7 @@ export const HomeScreen = ({navigation}) => {
             <Text style={styles.textContainer}>Home Screen</Text>
             <Button
                 title="Go to Profile"
-                onPress={() => navigation.navigate('Loading')}
+                onPress={() => navigation.navigate('Profile')}
             />
         </View>
     )

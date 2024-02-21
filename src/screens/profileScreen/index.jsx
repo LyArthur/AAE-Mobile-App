@@ -1,9 +1,11 @@
 import {StyleSheet, Text, StatusBar, View} from "react-native";
+import {Logout} from "./components";
 
-export const ProfileScreen = () =>{
+export const ProfileScreen = ({navigation}) =>{
     return (
         <View style={styles.container}>
             <Text> Profile screen </Text>
+            <Logout navigation={navigation}/>
         </View>
     )
 }

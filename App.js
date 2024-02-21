@@ -5,12 +5,10 @@ import {LoadingScreen} from "./src/screens/loadingScreen";
 import {HomeScreen} from "./src/screens/homeScreen";
 import {ProfileScreen} from "./src/screens/profileScreen";
 import {AuthScreen} from "./src/screens/authScreen";
-import * as SecureStore from "expo-secure-store";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-    SecureStore.deleteItemAsync("jwtToken");
   return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Loading">
