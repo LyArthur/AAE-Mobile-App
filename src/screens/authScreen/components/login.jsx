@@ -11,7 +11,10 @@ export const Login = ({ navigation }) => {
             await authenticate(username, password);
             // Stocker le token dans le stockage sécurisé ou dans le contexte de l'application
             // Rediriger l'utilisateur vers une autre vue après la connexion réussie
-            navigation.replace('Home');
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Home' }]
+            });
         } catch (error) {
             console.error('Erreur lors de l\'authentification:', error);
             Alert.alert('Erreur', 'Identifiants incorrects.');
