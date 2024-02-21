@@ -6,7 +6,7 @@ export const Logout = ({navigation}) => {
         SecureStore.deleteItemAsync("jwtToken");
         navigation.reset({
             index: 0,
-            routes: [{ name: 'Loading' }]
+            routes: [{ name: 'Authentication' }]
         });
     }
     return (

@@ -7,6 +7,7 @@ import {ProfileScreen} from "./src/screens/profileScreen";
 import {AuthScreen} from "./src/screens/authScreen";
 import {useEffect, useState} from "react";
 import * as SecureStore from 'expo-secure-store';
+import {validateToken} from "./src/api/AAE_api";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,9 +18,8 @@ export default function App() {
     useEffect(() => {
         const checkAuthentication = async () => {
             // Vérifier l'authentification de l'utilisateur, par exemple en vérifiant la présence d'un token JWT
-            const token = await SecureStore.getItemAsync("jwtToken"); // Utilisez votre fonction pour récupérer le token JWT
-
-            if (token) {
+            const token = await SecureStore.getItemAsync("jwtToken");
+            if (await validateToken(token)) {
                 // L'utilisateur est authentifié
                 setIsAuthenticated(true);
             }

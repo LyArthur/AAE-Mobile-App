@@ -19,7 +19,20 @@ export const authenticate = async (username, password) => {
         await SecureStore.setItemAsync('jwtToken', jwtToken)
     } else {
         throw "Erreur";
-        console.error('Erreur lors de l\'authentifidsfsfcation:',jwtToken);
+        console.error('Erreur lors de l\'authentifidsfsfcation:', jwtToken);
         Alert.alert('Erreur', 'Identifiants incorrects.');
     }
 };
+export const validateToken = async (token) => {
+    const response = await fetch(`${API_BASE_URL}/jwt-auth/v1/token/validate`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    const code = (await response.json()).code;
+    if (code === "jwt_auth_valid_token") {
+        return true
+    }
+    return false;
+}
