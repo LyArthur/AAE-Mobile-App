@@ -13,7 +13,7 @@ export const Login = ({ navigation }) => {
             // Rediriger l'utilisateur vers une autre vue après la connexion réussie
             navigation.reset({
                 index: 0,
-                routes: [{ name: 'Home' }]
+                routes: [{ name: "AuthenticatedNavigator", params: { screen: 'Home' } }]
             });
         } catch (error) {
             console.error('Erreur lors de l\'authentification:', error);
