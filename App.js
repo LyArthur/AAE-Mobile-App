@@ -1,46 +1,28 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {LoadingScreen} from "./src/screens/loadingScreen";
-import {HomeScreen} from "./src/screens/homeScreen";
-import {ProfileScreen} from "./src/screens/profileScreen";
-import {AuthScreen} from "./src/screens/authScreen";
-import {useEffect, useState} from "react";
-import * as SecureStore from 'expo-secure-store';
-import {validateToken} from "./src/api/AAE_api";
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import useBeforeLaunching from "./src/hooks/useBeforeLaunching";
+import { LoadingScreen } from "./src/screens/loadingScreen";
+import { HomeScreen } from "./src/screens/homeScreen";
+import { ProfileScreen } from "./src/screens/profileScreen";
+import { AuthScreen } from "./src/screens/authScreen";
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
-    const [isLoading, setIsLoading] = useState(true);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isLoaded, isAuthenticated] = useBeforeLaunching();
 
-    useEffect(() => {
-        const checkAuthentication = async () => {
-            // Vérifier l'authentification de l'utilisateur, par exemple en vérifiant la présence d'un token JWT
-            const token = await SecureStore.getItemAsync("jwtToken");
-            if (await validateToken(token)) {
-                // L'utilisateur est authentifié
-                setIsAuthenticated(true);
-            }
-
-            setIsLoading(false);
-        };
-
-        checkAuthentication();
-    }, []);
-
-    if (isLoading) {
-        return <LoadingScreen/>;
+    if (!isLoaded) {
+        return <LoadingScreen />;
     }
+
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName={isAuthenticated ? "Home" : "Authentication"}>
-                <Stack.Screen name="Loading" component={LoadingScreen}/>
-                <Stack.Screen name="Authentication" component={AuthScreen}/>
-                <Stack.Screen name="Home" component={HomeScreen}/>
-                <Stack.Screen name="Profile" component={ProfileScreen}/>
-            </Stack.Navigator>
+            <Drawer.Navigator initialRouteName={isAuthenticated ? "Home" : "Authentication"}>
+                <Drawer.Screen name="Home" component={HomeScreen} />
+                <Drawer.Screen name="Authentication" component={AuthScreen} options={{ drawerItemStyle: { display: 'none' }, headerShown: false }} />
+                <Drawer.Screen name="Profile" component={ProfileScreen} />
+            </Drawer.Navigator>
         </NavigationContainer>
     );
 }
