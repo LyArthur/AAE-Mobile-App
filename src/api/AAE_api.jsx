@@ -36,3 +36,13 @@ export const validateToken = async (token) => {
     }
     return false;
 }
+export const getAnnuaire = async () => {
+    const token = await SecureStore.getItemAsync('jwtToken');
+    const response = await fetch(`${API_BASE_URL}/api/annuaire`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    return await response.json();
+}
