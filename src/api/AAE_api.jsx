@@ -44,5 +44,22 @@ export const getAnnuaire = async () => {
             Authorization: `Bearer ${token}`
         }
     });
+    const data = await response.json();
+    if (!data.StatusCode === 1000){
+        return false
+    }
+    return data;
+}
+export const getProfile = async () => {
+    const token = await SecureStore.getItemAsync('jwtToken');
+    const response = await fetch(`${API_BASE_URL}/api/profile`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    if (!(response.json()).StatusCode === 1000) {
+        return false
+    }
     return await response.json();
 }

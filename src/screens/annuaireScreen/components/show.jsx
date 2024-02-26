@@ -8,22 +8,27 @@ export const ShowAnnuaire = () => {
     useEffect(() => {
         const getData = async () => {
             const data = await getAnnuaire();
+            if (data === false) {
+                return (
+                    <Text>No data</Text>
+                )
+            }
             setData(data.Data);
         };
         getData();
     }, []);
+    if (data === null) {
+        return <LoadingScreen/>;
+    }
     const Item = ({title, description}) => (
         <View>
-            <Text style={{fontWeight:500}}>{title}</Text>
-            <Text style={{marginBottom:20}}> {description} </Text>
+            <Text style={{fontWeight: 500}}>{title}</Text>
+            <Text style={{marginBottom: 20}}> {description} </Text>
         </View>
     );
     const renderItem = ({item, index}) => (
         <Item description={item.user_email} title={item.display_name}/>
     );
-    if (data === null) {
-        return <LoadingScreen />;
-    }
     return (
         <FlatList data={data} renderItem={renderItem}/>
     )
