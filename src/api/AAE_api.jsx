@@ -34,10 +34,8 @@ export const validateToken = async (token) => {
             });
             const responseData = await response.json();
             const code = responseData.code;
-            if (code === "jwt_auth_valid_token") {
-                return true;
-            }
-            return false;
+            return code === "jwt_auth_valid_token";
+
         } catch (error) {
             if (showAlert === true) {
                 Alert.alert('Erreur', 'La connexion a échoué', [
