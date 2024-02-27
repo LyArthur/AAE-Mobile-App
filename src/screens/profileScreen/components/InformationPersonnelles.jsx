@@ -1,3 +1,3 @@
-export const InformationPersonnelles = (prefixe,nom,prenom) => {
+export const InformationPersonnelles = () => {
 
 }

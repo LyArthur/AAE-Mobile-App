@@ -1,6 +1,6 @@
 import {Loading} from "./components";
 
-export const LoadingScreen = ({navigation}) => {
+export const LoadingScreen = ({}) => {
     return(
         <Loading />
     )

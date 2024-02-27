@@ -1,5 +1,5 @@
 import {ShowAnnuaire} from "./components";
-import {StatusBar, StyleSheet, View} from "react-native";
+import {StyleSheet, View} from "react-native";
 
 export const AnnuaireScreen = ({navigation}) => {
     return (

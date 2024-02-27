@@ -19,9 +19,9 @@ export const AuthenticatedNavigator = () => {
                 ),
             }}/>
             <Drawer.Screen name="AnnuaireContainer" component={AnnuaireContainer} options={{
-                title:"Annuaire",
-                drawerIcon: ({ focused, color, size }) => (
-                    <Ionicons name={focused ? 'book' : 'book-outline'} size={size} color={color} />
+                title: "Annuaire",
+                drawerIcon: ({focused, color, size}) => (
+                    <Ionicons name={focused ? 'book' : 'book-outline'} size={size} color={color}/>
                 ),
             }}/>
         </Drawer.Navigator>

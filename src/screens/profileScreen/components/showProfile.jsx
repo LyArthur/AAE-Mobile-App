@@ -1,4 +1,4 @@
-import {getAnnuaire, getProfile} from "../../../api/AAE_api";
+import {getProfile} from "../../../api/AAE_api";
 import {useEffect, useState} from "react";
 import {Text} from "react-native";
 import LoadingScreen from "../../loadingScreen";

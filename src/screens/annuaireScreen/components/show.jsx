@@ -41,7 +41,7 @@ export const ShowAnnuaire = ({ navigation }) => {
         <Item
             userId={item.ID}
             email={item.user_email}
-            title={item.display_name}
+            title={item.first_name + ' ' + item.last_name}
             img={item.img}
             onPress={() => navigation.navigate('DetailsUtilisateur', { userId: item.ID })}
         />
