@@ -9,9 +9,8 @@ export default function useBeforeLaunching() {
     useEffect(() => {
         const checkAuthentication = async () => {
             const token = await SecureStore.getItemAsync("jwtToken");
-            if (await validateToken(token)) {
-                setIsAuthenticated(true);
-            }
+            const isValidToken = await validateToken(token);
+            setIsAuthenticated(isValidToken);
             setIsLoaded(true);
         };
         checkAuthentication();

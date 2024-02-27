@@ -18,24 +18,43 @@ export const authenticate = async (username, password) => {
     if (jwtToken) {
         await SecureStore.setItemAsync('jwtToken', jwtToken)
     } else {
-        throw "Erreur";
-        console.error('Erreur lors de l\'authentifidsfsfcation:', jwtToken);
+        console.error('Erreur lors de l\'authentification:', jwtToken);
         Alert.alert('Erreur', 'Identifiants incorrects.');
     }
 };
 export const validateToken = async (token) => {
-    const response = await fetch(`${API_BASE_URL}/jwt-auth/v1/token/validate`, {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${token}`
+    let showAlert = true;
+    while (true) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/jwt-auth/v1/token/validate`, {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            const responseData = await response.json();
+            const code = responseData.code;
+            if (code === "jwt_auth_valid_token") {
+                return true;
+            }
+            return false;
+        } catch (error) {
+            if (showAlert === true) {
+                Alert.alert('Erreur', 'La connexion a échoué', [
+                    {
+                        text: 'Réessayer', onPress: () => {
+                            showAlert = true;
+                        }
+                    }
+                ]);
+                showAlert = false;
+            }
         }
-    });
-    const code = (await response.json()).code;
-    if (code === "jwt_auth_valid_token") {
-        return true
+        await new Promise(resolve => setTimeout(resolve, 3000));
     }
-    return false;
-}
+};
+
+
 export const getAnnuaire = async () => {
     const token = await SecureStore.getItemAsync('jwtToken');
     const response = await fetch(`${API_BASE_URL}/api/annuaire`, {
@@ -45,7 +64,7 @@ export const getAnnuaire = async () => {
         }
     });
     const data = await response.json();
-    if (!data.StatusCode === 1000){
+    if (!data.StatusCode === 1000) {
         return false
     }
     return data;
