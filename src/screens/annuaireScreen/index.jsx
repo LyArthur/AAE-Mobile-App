@@ -11,7 +11,7 @@ export const AnnuaireScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: StatusBar.currentHeight,
+        paddingTop: 20,
         justifyContent: 'center',
         alignItems: 'center',
     }

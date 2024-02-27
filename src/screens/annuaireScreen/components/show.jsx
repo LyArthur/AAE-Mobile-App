@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, TextInput, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import { getAnnuaire } from '../../../api/AAE_api';
 import LoadingScreen from '../../loadingScreen';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import Item from './item';
+import SearchBar from './searchBar';
 
 export const ShowAnnuaire = ({ navigation }) => {
     const [data, setData] = useState(null);
@@ -16,8 +16,11 @@ export const ShowAnnuaire = ({ navigation }) => {
             if (result === false) {
                 return;
             }
-            setData(result.Data);
-            setFilteredData(result.Data);
+            const sortedData = result.Data.sort((a, b) => {
+                return a.last_name.localeCompare(b.last_name);
+            });
+            setData(sortedData);
+            setFilteredData(sortedData);
         };
         getData();
     }, []);
@@ -46,15 +49,7 @@ export const ShowAnnuaire = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.searchContainer}>
-                <Icon name="search" size={20} color="#000" style={styles.searchIcon} />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Rechercher..."
-                    onChangeText={handleSearch}
-                    value={searchQuery}
-                />
-            </View>
+            <SearchBar value={searchQuery} onChangeText={handleSearch} />
             <FlatList
                 data={filteredData}
                 renderItem={renderItem}
@@ -69,24 +64,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%'
-    },
-    searchContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 10,
-        marginBottom: 10,
-        marginHorizontal: 10,
-        borderWidth: 1,
-        borderColor: '#a3a3a3',
-        borderRadius: 3,
-    },
-    input: {
-        flex: 1,
-        height: 40,
-        paddingHorizontal: 10,
-    },
-    searchIcon: {
-        marginRight: 10,
     },
     list: {
         width: '100%',
