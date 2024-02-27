@@ -1,13 +1,10 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createDrawerNavigator} from "@react-navigation/drawer";
 import useBeforeLaunching from "./src/hooks/useBeforeLaunching";
 import {LoadingScreen} from "./src/screens/loadingScreen";
-import {HomeScreen} from "./src/screens/homeScreen";
-import {ProfileScreen} from "./src/screens/profileScreen";
 import {AuthScreen} from "./src/screens/authScreen";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {AuthenticatedNavigator} from "./src/navigatorContainer/authenticatedContainer";
+import {AuthenticatedNavigator} from "./src/navigatorContainer/authenticated/authenticatedContainer";
 
 const Stack = createNativeStackNavigator();
 

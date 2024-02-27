@@ -64,3 +64,17 @@ export const getProfile = async () => {
     }
     return data;
 }
+export const getDetails = async (id) => {
+    const token = await SecureStore.getItemAsync('jwtToken');
+    const response = await fetch(`${API_BASE_URL}/api/profile/${id}`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    const data = await response.json();
+    if (!data.StatusCode === 1000) {
+        return false
+    }
+    return data;
+}
