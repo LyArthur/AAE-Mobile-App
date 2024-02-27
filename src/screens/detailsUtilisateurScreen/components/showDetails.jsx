@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoadingScreen from "../../loadingScreen";
 import { getDetails } from "../../../api/AAE_api";
 
@@ -9,23 +8,13 @@ export const ShowDetails = ({ id }) => {
 
     useEffect(() => {
         const getData = async () => {
-            try {
-                const cachedData = await AsyncStorage.getItem(`userData_${id}`);
-                if (cachedData !== null) {
-                    setData(JSON.parse(cachedData));
-                } else {
-                    const result = await getDetails(id);
-                    if (result === false) {
-                        return (
-                            <Text>No data</Text>
-                        );
-                    }
-                    await AsyncStorage.setItem(`userData_${id}`, JSON.stringify(result.Data));
-                    setData(result.Data);
-                }
-            } catch (error) {
-                console.error("Error retrieving data from AsyncStorage: ", error);
+            const result = await getDetails(id);
+            if (result === false) {
+                return (
+                    <Text>No data</Text>
+                );
             }
+            setData(result.Data);
         };
         getData();
     }, []);
