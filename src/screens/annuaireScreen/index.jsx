@@ -4,7 +4,7 @@ import {StatusBar, StyleSheet, View} from "react-native";
 export const AnnuaireScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
-            <ShowAnnuaire/>
+            <ShowAnnuaire navigation={navigation}/>
         </View>
     )
 }

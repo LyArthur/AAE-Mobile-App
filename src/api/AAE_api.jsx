@@ -58,8 +58,9 @@ export const getProfile = async () => {
             Authorization: `Bearer ${token}`
         }
     });
-    if (!(response.json()).StatusCode === 1000) {
+    const data = await response.json();
+    if (!data.StatusCode === 1000) {
         return false
     }
-    return await response.json();
+    return data;
 }
