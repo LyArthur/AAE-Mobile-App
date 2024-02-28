@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
+import { ScrollView, StyleSheet, Text } from "react-native";
 import LoadingScreen from "../../loadingScreen";
 import { getDetails } from "../../../api/AAE_api";
 import {RenderContacts} from "./contacts";

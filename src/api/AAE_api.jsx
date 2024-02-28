@@ -61,7 +61,7 @@ export const authenticate = async (username, password) => {
     }
 };
 
-export const validateToken = async (token) => {
+export const validateToken = async () => {
     return await sendAuthorizedRequest(`${API_BASE_URL}/jwt-auth/v1/token/validate`, 'POST');
 };
 

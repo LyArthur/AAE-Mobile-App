@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import * as SecureStore from "expo-secure-store";
 import {validateToken} from "../api/AAE_api";
 
 export default function useBeforeLaunching() {
@@ -8,8 +7,7 @@ export default function useBeforeLaunching() {
 
     useEffect(() => {
         const checkAuthentication = async () => {
-            const token = await SecureStore.getItemAsync("jwtToken");
-            const isValidToken = await validateToken(token);
+            const isValidToken = await validateToken();
             setIsAuthenticated(isValidToken);
             setIsLoaded(true);
         };
