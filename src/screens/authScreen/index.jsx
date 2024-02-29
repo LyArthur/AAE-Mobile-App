@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         gap:10
     },
     buttonContainer: {
-        marginBottom: 20, // Espacement entre le texte et le bord inférieur de l'écran
+        marginBottom: 20,
     },
 });
 export default AuthScreen;

@@ -9,8 +9,6 @@ export const Login = ({ navigation }) => {
     const handleLogin = async () => {
         try {
             await authenticate(username, password);
-            // Stocker le token dans le stockage sécurisé ou dans le contexte de l'application
-            // Rediriger l'utilisateur vers une autre vue après la connexion réussie
             navigation.reset({
                 index: 0,
                 routes: [{ name: "AuthenticatedNavigator", params: { screen: 'Home' } }]

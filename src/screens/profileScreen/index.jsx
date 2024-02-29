@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textContainer: {
-        marginBottom: 20, // Espacement entre le texte et le bord inférieur de l'écran
+        marginBottom: 20,
     },
 });
 export default ProfileScreen
