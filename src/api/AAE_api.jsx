@@ -37,7 +37,7 @@ const sendAuthorizedRequest = async (url, method, body = null) => {
                 showAlert = false;
             }
         }
-        await new Promise(resolve => setTimeout(resolve, 4000));
+        await new Promise(resolve => setTimeout(resolve, 5000));
     }
 }
 

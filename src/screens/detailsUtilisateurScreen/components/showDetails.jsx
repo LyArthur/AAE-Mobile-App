@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text } from "react-native";
 import LoadingScreen from "../../loadingScreen";
 import { getDetails } from "../../../api/AAE_api";
 import {RenderContacts} from "./contacts";
-import {RenderProfileHeader} from "./profileHeader";
+import {RenderDetailsHeader} from "./detailsHeader";
 
 const cachedData = {};
 
@@ -34,7 +34,7 @@ export const ShowDetails = ({ id }) => {
     }
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <RenderProfileHeader data={data}/>
+            <RenderDetailsHeader data={data}/>
             <RenderContacts data={data}/>
         </ScrollView>
     );

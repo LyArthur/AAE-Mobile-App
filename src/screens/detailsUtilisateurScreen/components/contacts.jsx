@@ -10,11 +10,12 @@ export const sendEmail = (email) => {
     Linking.openURL(`mailto:${email}`);
 };
 
-export const RenderContacts = ({data}) => {
+export const RenderContacts = ({ data }) => {
     const contacts = [];
+
     if (data.user_email) {
         contacts.push(
-            <TouchableOpacity onPress={() => sendEmail(data.user_email)}>
+            <TouchableOpacity key="email" onPress={() => sendEmail(data.user_email)}>
                 <View style={styles.contactInfo}>
                     <Text style={styles.contactLabel}>Email :</Text>
                     <Text style={styles.contactValue}>{data.user_email}</Text>
@@ -22,10 +23,11 @@ export const RenderContacts = ({data}) => {
             </TouchableOpacity>
         );
     }
+
     for (let i = 1; i < 6; i++) {
         if (data[`type-tel-0${i}`] !== "" && data[`type-tel-0${i}`] !== undefined) {
             contacts.push(
-                <TouchableOpacity onPress={() => makePhoneCall(data[`telephone-0${i}`])} key={`telephone-0${i}`}>
+                <TouchableOpacity key={`telephone-0${i}`} onPress={() => makePhoneCall(data[`telephone-0${i}`])}>
                     <View style={styles.contactInfo}>
                         <Text style={styles.contactLabel}>{data[`type-tel-0${i}`]} :</Text>
                         <Text style={styles.contactValue}>{data[`telephone-0${i}`]}</Text>
@@ -34,12 +36,15 @@ export const RenderContacts = ({data}) => {
             );
         }
     }
+
     return (
         <View style={styles.contactContainer}>
             <Text style={styles.sectionTitle}>Contacts :</Text>
             {contacts}
-        </View>);
+        </View>
+    );
 };
+
 
 const styles = StyleSheet.create({
     contactContainer: {

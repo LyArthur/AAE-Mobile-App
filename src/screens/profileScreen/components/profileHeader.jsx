@@ -1,4 +1,4 @@
-import {StyleSheet, Image, Text, View} from "react-native";
+import {Image, StyleSheet, Text, View} from "react-native";
 
 export const RenderProfileHeader = ({data}) => {
     return (<View style={styles.profileHeader}>

@@ -1,24 +1,29 @@
 import {getProfile} from "../../../api/AAE_api";
 import {useEffect, useState} from "react";
-import {Text} from "react-native";
+import {Button, Linking, ScrollView, StyleSheet, Text, View} from "react-native";
 import LoadingScreen from "../../loadingScreen";
+import {RenderProfileHeader} from "./profileHeader";
+import * as SecureStore from "expo-secure-store";
 
 export const ShowProfile = () => {
-    const [data, setData] = useState(null);
-    useEffect(() => {
-        const getData = async () => {
-            const data = await getProfile();
-            if (data === false) {
-                return (
-                    <Text>No data</Text>
-                )
-            }
-            setData(data.Data);
-        };
-        getData();
-    }, []);
-    if (data === null) {
-        return <LoadingScreen />;
+    const [token, setToken] = useState(null);
+    const getToken = async () =>{
+        const jwtToken = await SecureStore.getItem('jwtToken');
+        setToken(jwtToken);
     }
-    return <Text>{data.username}</Text>;
+    getToken();
+    if (token === null) {
+        return <LoadingScreen/>;
+    }
+    return (
+        <ScrollView contentContainerStyle={styles.container}>
+            <Button onPress={Linking.openURL(`https://aaedev.com/extranet-membres/?jwt=${token}`)}/>
+        </ScrollView>
+    );
 }
+const styles = StyleSheet.create({
+    container: {
+        flexGrow: 1,
+        padding: 20,
+    },
+});
