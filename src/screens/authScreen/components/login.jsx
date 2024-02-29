@@ -8,14 +8,17 @@ export const Login = ({ navigation }) => {
 
     const handleLogin = async () => {
         try {
-            await authenticate(username, password);
-            navigation.reset({
-                index: 0,
-                routes: [{ name: "AuthenticatedNavigator", params: { screen: 'Home' } }]
-            });
+            const isAuthenticated  = await authenticate(username, password);
+            if (isAuthenticated === true){
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: "AuthenticatedNavigator", params: { screen: 'Home' } }]
+                });
+            } else {
+                Alert.alert('Erreur', 'Identifiants incorrects.');
+            }
         } catch (error) {
-            console.error('Erreur lors de l\'authentification:', error);
-            Alert.alert('Erreur', 'Identifiants incorrects.');
+            Alert.alert('Erreur', 'Problèmes de connexion');
         }
     };
 

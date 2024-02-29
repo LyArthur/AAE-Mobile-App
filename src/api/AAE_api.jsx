@@ -1,5 +1,5 @@
 import * as SecureStore from "expo-secure-store";
-import { Alert } from "react-native";
+import {Alert} from "react-native";
 
 const API_BASE_URL = 'https://aaedev.com/extranet-membres/wp-json';
 
@@ -56,9 +56,9 @@ export const authenticate = async (username, password) => {
     const jwtToken = responseData.token;
     if (jwtToken) {
         await SecureStore.setItemAsync('jwtToken', jwtToken)
-    } else {
-        Alert.alert('Erreur', 'Identifiants incorrects.');
+        return true
     }
+    return false
 };
 
 export const validateToken = async () => {
