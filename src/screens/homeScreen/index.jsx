@@ -1,22 +1,17 @@
-import {StatusBar, StyleSheet, Text, Button, View} from "react-native";
+import {StyleSheet, View} from "react-native";
 import React from "react";
+import {ShowEvents} from "./components";
 
-export const HomeScreen = ({navigation}) => {
-    //todo afficher l'agenda
+export const HomeScreen = ({}) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.textContainer}>Home Screen</Text>
-            <Button
-                title="Go to Profile"
-                onPress={() => navigation.navigate('Profile')}
-            />
+            <ShowEvents />
         </View>
     )
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: StatusBar.currentHeight,
         justifyContent: 'center',
         alignItems: 'center',
     },

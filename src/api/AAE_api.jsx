@@ -76,3 +76,6 @@ export const getProfile = async () => {
 export const getDetails = async (id) => {
     return await sendAuthorizedRequest(`${API_BASE_URL}/api/profile/${id}`, 'GET');
 };
+export const getEvents = async () => {
+    return await sendAuthorizedRequest(`${API_BASE_URL}/api/events`, 'GET');
+};
