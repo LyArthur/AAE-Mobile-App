@@ -21,8 +21,12 @@ const sendAuthorizedRequest = async (url, method, body = null) => {
             }
             const response = await fetch(url, options);
             const data = await response.json();
-            if (data.data.status !== 200) {
-                return false;
+            if (data.StatusCode !== undefined) {
+                if (data.StatusCode !== 1000) {
+                    return false
+                }
+            } else if (data.data.status !== 200) {
+                return false
             }
             return data;
         } catch (error) {
@@ -37,7 +41,7 @@ const sendAuthorizedRequest = async (url, method, body = null) => {
                 showAlert = false;
             }
         }
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        await new Promise(resolve => setTimeout(resolve, 4000));
     }
 }
 
@@ -62,7 +66,21 @@ export const authenticate = async (username, password) => {
 };
 
 export const validateToken = async () => {
-    return await sendAuthorizedRequest(`${API_BASE_URL}/jwt-auth/v1/token/validate`, 'POST');
+    try{
+        const token = await SecureStore.getItemAsync('jwtToken');
+        const response = await fetch(`${API_BASE_URL}/jwt-auth/v1/token/validate`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+        });
+        const responseData = await response.json();
+        console.log(responseData);
+        return responseData.data.status === 200;
+
+    } catch (error){
+        return false
+    }
 };
 
 export const getAnnuaire = async () => {

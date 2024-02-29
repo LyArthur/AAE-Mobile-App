@@ -1,15 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Alert, StyleSheet, Button, TextInput, View } from "react-native";
 import { authenticate } from "../../../api/AAE_api";
 
 export const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleLogin = async () => {
         try {
-            const isAuthenticated  = await authenticate(username, password);
-            if (isAuthenticated === true){
+            setIsLoading(true); // Activer le chargement
+            const isAuthenticated = await authenticate(username, password);
+            if (isAuthenticated === true) {
                 navigation.reset({
                     index: 0,
                     routes: [{ name: "AuthenticatedNavigator", params: { screen: 'Home' } }]
@@ -19,6 +21,8 @@ export const Login = ({ navigation }) => {
             }
         } catch (error) {
             Alert.alert('Erreur', 'Problèmes de connexion');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -29,6 +33,7 @@ export const Login = ({ navigation }) => {
                 placeholder="Nom d'utilisateur"
                 value={username}
                 onChangeText={setUsername}
+                editable={!isLoading}
             />
             <TextInput
                 style={styles.input}
@@ -36,8 +41,9 @@ export const Login = ({ navigation }) => {
                 secureTextEntry={true}
                 value={password}
                 onChangeText={setPassword}
+                editable={!isLoading}
             />
-            <Button title="Se connecter" onPress={handleLogin} />
+            <Button title="Se connecter" onPress={handleLogin} disabled={isLoading} />
         </View>
     );
 };
