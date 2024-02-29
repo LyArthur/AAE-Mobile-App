@@ -21,7 +21,7 @@ const sendAuthorizedRequest = async (url, method, body = null) => {
             }
             const response = await fetch(url, options);
             const data = await response.json();
-            if (!data.StatusCode === 1000) {
+            if (data.data.status !== 200) {
                 return false;
             }
             return data;
