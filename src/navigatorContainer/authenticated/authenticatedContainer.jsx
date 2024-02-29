@@ -32,7 +32,7 @@ export const AuthenticatedNavigator = () => {
                 }}
             />
             <Drawer.Screen
-                name="Annuaire"
+                name="AnnuaireContainer"
                 component={AnnuaireContainer}
                 options={{
                     title: 'Annuaire', drawerIcon: ({focused, color, size}) => (<Ionicons
