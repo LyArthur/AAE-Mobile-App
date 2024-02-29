@@ -1,4 +1,4 @@
-import {StyleSheet, Text, StatusBar, View} from "react-native";
+import {StyleSheet, StatusBar, View} from "react-native";
 import {Logout} from "./components";
 import {ShowProfile} from "./components";
 

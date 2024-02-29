@@ -1,8 +1,6 @@
-import {getProfile} from "../../../api/AAE_api";
-import {useEffect, useState} from "react";
-import {Button, Linking, ScrollView, StyleSheet, Text, View} from "react-native";
+import { useState} from "react";
+import {Button, Linking, ScrollView, StyleSheet} from "react-native";
 import LoadingScreen from "../../loadingScreen";
-import {RenderProfileHeader} from "./profileHeader";
 import * as SecureStore from "expo-secure-store";
 
 export const ShowProfile = () => {
@@ -17,7 +15,7 @@ export const ShowProfile = () => {
     }
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <Button onPress={Linking.openURL(`https://aaedev.com/extranet-membres/?jwt=${token}`)}/>
+            <Button title={"Afficher mon profile"} onPress={Linking.openURL(`https://aaedev.com/extranet-membres/?jwt=${token}`)}/>
         </ScrollView>
     );
 }
