@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "AAE-test",
-    "slug": "AAE-test",
+    "slug": "aae",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -32,8 +32,9 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "e2822c3f-34bd-4d5d-9582-e7f1e4af790f"
+        "projectId": "886ddcf2-7ff0-4698-bbf8-3fdd8679e7d5"
       }
-    }
+    },
+    "owner": "a.ly"
   }
 }
