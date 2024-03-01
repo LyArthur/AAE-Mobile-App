@@ -75,7 +75,6 @@ export const validateToken = async () => {
             },
         });
         const responseData = await response.json();
-        console.log(responseData);
         return responseData.data.status === 200;
 
     } catch (error){
