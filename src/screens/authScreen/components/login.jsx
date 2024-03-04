@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Alert, StyleSheet, Button, TextInput, View } from "react-native";
 import { authenticate } from "../../../api/AAE_api";
+import {useTranslation} from "react-i18next";
 
 export const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const { t } = useTranslation("authScreen");
 
     const handleLogin = async () => {
         try {
@@ -17,33 +19,32 @@ export const Login = ({ navigation }) => {
                     routes: [{ name: "AuthenticatedNavigator", params: { screen: 'Home' } }]
                 });
             } else {
-                Alert.alert('Erreur', 'Identifiants incorrects.');
+                Alert.alert(t('errors.title'), t('errors.invalidCredentials'));
             }
         } catch (error) {
-            Alert.alert('Erreur', 'Problèmes de connexion');
+            Alert.alert(t('errors.title'), t('errors.connectionIssues'));
         } finally {
             setIsLoading(false);
         }
     };
-
     return (
         <View>
             <TextInput
                 style={styles.input}
-                placeholder="Nom d'utilisateur"
+                placeholder={t('username')}
                 value={username}
                 onChangeText={setUsername}
                 editable={!isLoading}
             />
             <TextInput
                 style={styles.input}
-                placeholder="Mot de passe"
+                placeholder={t('password')}
                 secureTextEntry={true}
                 value={password}
                 onChangeText={setPassword}
                 editable={!isLoading}
             />
-            <Button title="Se connecter" onPress={handleLogin} disabled={isLoading} />
+            <Button title={t('login')} onPress={handleLogin} disabled={isLoading} />
         </View>
     );
 };

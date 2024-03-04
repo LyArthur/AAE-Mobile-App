@@ -1,0 +1,30 @@
+{
+  "loadingScreen": {
+    "message": "loading..."
+  },
+  "authScreen": {
+    "username": "Username",
+    "password": "Password",
+    "login": "Log in",
+    "errors": {
+      "title": "Error",
+      "invalidCredentials": "Invalid credentials",
+      "connectionIssues": "Connection issues"
+    }
+  },
+  "homeScreen": {
+    "title": "Agenda"
+  },
+  "profileScreen": {
+    "title": "Profile",
+    "showProfile" : "Show my profile",
+    "logout": "Log out"
+  },
+  "directoryScreen": {
+    "title": "Directory",
+    "searchBar": "Search..."
+  },
+  "userDetailsScreen": {
+    "title": "Contact details"
+  }
+}

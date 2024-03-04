@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Linking} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Linking } from 'react-native';
 import * as SecureStore from "expo-secure-store";
+import * as Localization from "expo-localization";
 
+const languageCode = Localization.getLocales()[0].languageCode;
 const handleEventPress = async (uri) => {
     const jwtToken = await SecureStore.getItem('jwtToken');
     Linking.openURL(`https://aaedev.com/?jwt=${jwtToken}&uri=${uri}`);
@@ -11,26 +13,47 @@ const isSameMonthYear = (date1, date2) => {
     return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth();
 };
 
+const getFormattedDate = (date, format) => {
+    const options = { ...format };
+    return new Intl.DateTimeFormat(languageCode, options).format(date);
+};
+
 const getMonthYear = (date) => {
-    const monthYearFormat = new Intl.DateTimeFormat('fr-FR', { month: 'long', year: 'numeric' });
-    return monthYearFormat.format(date);
+    return getFormattedDate(date, { month: 'long', year: 'numeric' });
 };
 
 const getMonthName = (monthIndex) => {
-    const months = ['Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aout', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const frMonths = ['Jan', 'Fev', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil', 'Aout', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const enMonths = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    const months = languageCode === 'fr' ? frMonths : enMonths;
     return months[monthIndex];
+};
+
+const getDayOfWeek = (date) => {
+    const frDays = ['DIM', 'LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM'];
+    const enDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const days = languageCode === 'fr' ? frDays : enDays;
+    return days[date.getDay()];
+};
+
+const getTimeRange = (startDate, endDate) => {
+    const startTime = startDate.toLocaleTimeString(languageCode, { hour: '2-digit', minute: '2-digit' });
+    const endTime = endDate.toLocaleTimeString(languageCode, { hour: '2-digit', minute: '2-digit' });
+
+    const formattedStartDate = `${startDate.getDate()} ${getMonthName(startDate.getMonth())} ${startDate.getFullYear()}`;
+    const formattedEndDate = `${endDate.getDate()} ${getMonthName(endDate.getMonth())} ${endDate.getFullYear()}`;
+
+    return startDate.toLocaleDateString() === endDate.toLocaleDateString()
+        ? `${formattedStartDate} | ${startTime} > ${endTime}`
+        : `${formattedStartDate} | ${startTime} > ${formattedEndDate} | ${endTime}`;
 };
 
 export const renderEventItem = ({ item, index, events }) => {
     const startDate = new Date(item.start_date);
     const endDate = new Date(item.end_date);
-    const dayOfWeek = ['DIM', 'LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM'][startDate.getDay()];
-    const startTime = startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const endTime = endDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-    const formattedStartDate = `${startDate.getDate()} ${getMonthName(startDate.getMonth())} ${startDate.getFullYear()}`;
-    const formattedEndDate = `${endDate.getDate()} ${getMonthName(endDate.getMonth())} ${endDate.getFullYear()}`;
-    const timeRange = startDate.toLocaleDateString() === endDate.toLocaleDateString() ? `${formattedStartDate} | ${startTime} > ${endTime}` : `${formattedStartDate} | ${startTime} > ${formattedEndDate} | ${endTime}`;
+    const dayOfWeek = getDayOfWeek(startDate);
+    const timeRange = getTimeRange(startDate, endDate);
 
     return (
         <TouchableOpacity onPress={() => handleEventPress(item.uri)}>

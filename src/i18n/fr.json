@@ -1,0 +1,30 @@
+{
+  "loadingScreen": {
+    "message": "chargement..."
+  },
+  "authScreen": {
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "login": "Se connecter",
+    "errors": {
+      "title": "Erreur",
+      "invalidCredentials": "Identifiants incorrects",
+      "connectionIssues": "Problèmes de connexion"
+    }
+  },
+  "homeScreen": {
+    "title": "Agenda"
+  },
+  "profileScreen": {
+    "title": "Profil",
+    "showProfile" : "Afficher mon profil",
+    "logout": "Se déconnecter"
+  },
+  "directoryScreen": {
+    "title": "Annuaire",
+    "searchBar": "Rechercher..."
+  },
+  "userDetailsScreen": {
+    "title": "Coordonées"
+  }
+}
