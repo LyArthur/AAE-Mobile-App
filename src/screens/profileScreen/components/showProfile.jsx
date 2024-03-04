@@ -3,9 +3,11 @@ import { Button, Linking, ScrollView, StyleSheet } from "react-native";
 import LoadingScreen from "../../loadingScreen";
 import * as SecureStore from "expo-secure-store";
 import Logout from "./logout";
+import {useTranslation} from "react-i18next";
 
 export const ShowProfile = ({navigation}) => {
     const [token, setToken] = useState(null);
+    const { t } = useTranslation("profileScreen");
 
     useEffect(() => {
         const getToken = async () => {
@@ -13,7 +15,7 @@ export const ShowProfile = ({navigation}) => {
             setToken(jwtToken);
         };
         getToken();
-    }, []); // Videz le tableau de dépendances pour exécuter l'effet une seule fois après le montage du composant
+    }, []);
 
     if (token === null) {
         return <LoadingScreen/>;
@@ -22,7 +24,7 @@ export const ShowProfile = ({navigation}) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Button
-                title="Afficher mon profil"
+                title={t('showProfile')}
                 onPress={() => Linking.openURL(`https://aaedev.com/?jwt=${token}`)}
             />
             <Logout navigation={navigation}/>
