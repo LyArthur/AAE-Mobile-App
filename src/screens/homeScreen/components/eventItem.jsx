@@ -15,7 +15,7 @@ const isSameMonthYear = (date1, date2) => {
 
 const getFormattedDate = (date, format) => {
     const options = { ...format };
-    return new Intl.DateTimeFormat(languageCode, options).format(date);
+    return new Intl.DateTimeFormat(languageCode === "fr" ? "fr" : "en", options).format(date);
 };
 
 const getMonthYear = (date) => {

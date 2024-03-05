@@ -29,4 +29,4 @@ i18n
         lng: Localization.getLocales()[0].languageCode,
     });
 
-export {i18n}; // Exportez l'instance i18n initialisée
+export {i18n}
