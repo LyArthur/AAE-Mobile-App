@@ -34,11 +34,12 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 36,
         fontSize: 14,
-        color: '#333',
+        color: '#1c1c1c',
         marginLeft: 8,
     },
     searchIcon: {
         marginRight: 8,
+        color: '#1c1c1c',
     },
 });
 

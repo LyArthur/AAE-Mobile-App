@@ -62,20 +62,22 @@ export const authenticate = async (username, password) => {
         await SecureStore.setItemAsync('jwtToken', jwtToken)
         return true
     }
-    return false
+    return responseData
 };
 
 export const validateToken = async () => {
     try{
         const token = await SecureStore.getItemAsync('jwtToken');
-        const response = await fetch(`${API_BASE_URL}/jwt-auth/v1/token/validate`, {
-            method: 'POST',
+        const response = await fetch(`${API_BASE_URL}/api/token/VALIDATE`, {
+            method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
             },
         });
         const responseData = await response.json();
-        return responseData.data.status === 200;
+        SecureStore.setItem("username",responseData.Data.data.username);
+        SecureStore.setItem("userImg",responseData.Data.data.userImg);
+        return responseData.Data.status === 200;
 
     } catch (error){
         return false

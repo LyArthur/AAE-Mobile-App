@@ -9,13 +9,15 @@ const resources = {
     fr: {
         loadingScreen: fr.loadingScreen, authScreen: fr.authScreen,
         homeScreen: fr.homeScreen, profileScreen: fr.profileScreen,
-        directoryScreen: fr.directoryScreen, userDetailsScreen: fr.userDetailsScreen
+        directoryScreen: fr.directoryScreen, userDetailsScreen: fr.userDetailsScreen,
+        agendaScreen: fr.agendaScreen
     },
 
     en: {
         loadingScreen: en.loadingScreen, authScreen: en.authScreen,
         homeScreen: en.homeScreen, profileScreen: en.profileScreen,
-        directoryScreen: en.directoryScreen, userDetailsScreen: en.userDetailsScreen
+        directoryScreen: en.directoryScreen, userDetailsScreen: en.userDetailsScreen,
+        agendaScreen: en.agendaScreen
     },
 };
 

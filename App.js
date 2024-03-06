@@ -11,6 +11,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
     const [isLoaded, isAuthenticated] = useBeforeLaunching();
+
     if (!isLoaded) {
         return <LoadingScreen />;
     }

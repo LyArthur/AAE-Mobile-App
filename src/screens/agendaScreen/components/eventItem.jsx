@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Linking } from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Linking} from 'react-native';
 import * as SecureStore from "expo-secure-store";
 import * as Localization from "expo-localization";
 
-const languageCode = Localization.getLocales()[0].languageCode;
+const languageCode = Localization.getLocales()[0].languageCode === "fr" ? "fr" : "en";
 const handleEventPress = async (uri) => {
     const jwtToken = await SecureStore.getItem('jwtToken');
     Linking.openURL(`https://aaedev.com/?jwt=${jwtToken}&uri=${uri}`);
@@ -14,12 +14,12 @@ const isSameMonthYear = (date1, date2) => {
 };
 
 const getFormattedDate = (date, format) => {
-    const options = { ...format };
-    return new Intl.DateTimeFormat(languageCode === "fr" ? "fr" : "en", options).format(date);
+    const options = {...format};
+    return new Intl.DateTimeFormat(languageCode, options).format(date);
 };
 
 const getMonthYear = (date) => {
-    return getFormattedDate(date, { month: 'long', year: 'numeric' });
+    return getFormattedDate(date, {month: 'long', year: 'numeric'});
 };
 
 const getMonthName = (monthIndex) => {
@@ -37,8 +37,8 @@ const getDayOfWeek = (date) => {
 };
 
 const getTimeRange = (startDate, endDate) => {
-    const startTime = startDate.toLocaleTimeString(languageCode, { hour: '2-digit', minute: '2-digit' });
-    const endTime = endDate.toLocaleTimeString(languageCode, { hour: '2-digit', minute: '2-digit' });
+    const startTime = startDate.toLocaleTimeString(languageCode, {hour: '2-digit', minute: '2-digit'});
+    const endTime = endDate.toLocaleTimeString(languageCode, {hour: '2-digit', minute: '2-digit'});
 
     const formattedStartDate = `${startDate.getDate()} ${getMonthName(startDate.getMonth())} ${startDate.getFullYear()}`;
     const formattedEndDate = `${endDate.getDate()} ${getMonthName(endDate.getMonth())} ${endDate.getFullYear()}`;
@@ -48,7 +48,7 @@ const getTimeRange = (startDate, endDate) => {
         : `${formattedStartDate} | ${startTime} > ${formattedEndDate} | ${endTime}`;
 };
 
-export const renderEventItem = ({ item, index, events }) => {
+export const renderEventItem = ({item, index, events}) => {
     const startDate = new Date(item.start_date);
     const endDate = new Date(item.end_date);
 
@@ -61,13 +61,13 @@ export const renderEventItem = ({ item, index, events }) => {
                 {index === 0 || !isSameMonthYear(startDate, new Date(events[index - 1].start_date)) ? (
                     <View style={styles.separatorContainer}>
                         <Text style={styles.separatorText}>{getMonthYear(startDate)}</Text>
-                        <View style={styles.separatorLine} />
+                        <View style={styles.separatorLine}/>
                     </View>
                 ) : null}
                 <View style={styles.eventContainer}>
                     <View style={styles.dateContainer}>
                         <Text>{dayOfWeek}</Text>
-                        <Text style={{ fontSize: 24 }}>{startDate.getDate()}</Text>
+                        <Text style={{fontSize: 24}}>{startDate.getDate()}</Text>
                     </View>
                     <View style={styles.detailsContainer}>
                         <Text style={styles.timeText}>{timeRange}</Text>
@@ -78,7 +78,6 @@ export const renderEventItem = ({ item, index, events }) => {
         </TouchableOpacity>
     );
 };
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

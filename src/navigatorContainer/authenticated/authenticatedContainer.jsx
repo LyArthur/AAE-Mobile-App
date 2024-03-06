@@ -5,21 +5,33 @@ import ProfileScreen from '../../screens/profileScreen';
 import {AnnuaireContainer} from './annuaireContainer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useTranslation} from "react-i18next";
+import {AgendaScreen} from "../../screens/agendaScreen";
 
 const Drawer = createDrawerNavigator();
 
 export const AuthenticatedNavigator = () => {
     const { t } = useTranslation();
     return (<Drawer.Navigator>
+        <Drawer.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+                drawerIcon: ({focused, color, size}) => (<Ionicons
+                    name={focused ? 'home' : 'home-outline'}
+                    size={size}
+                    color={color}
+                />), title: t('homeScreen:title'),
+            }}
+        />
             <Drawer.Screen
                 name="Agenda"
-                component={HomeScreen}
+                component={AgendaScreen}
                 options={{
                     drawerIcon: ({focused, color, size}) => (<Ionicons
                             name={focused ? 'calendar' : 'calendar-outline'}
                             size={size}
                             color={color}
-                        />), title: t('homeScreen:title'),
+                        />), title: t('agendaScreen:title'),
                 }}
             />
             <Drawer.Screen

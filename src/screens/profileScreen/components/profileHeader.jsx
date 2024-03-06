@@ -1,15 +1,16 @@
 import {Image, StyleSheet, Text, View} from "react-native";
 
 export const RenderProfileHeader = ({data}) => {
-    return (<View style={styles.profileHeader}>
-        <View style={styles.profileImageContainer}>
-            <Image
-                source={{uri: data.img}}
-                style={styles.profileImage}
-            />
-        </View>
-        <Text style={styles.userName}>{data.first_name} {data.last_name}</Text>
-    </View>)
+    return (
+        <View style={styles.profileHeader}>
+            <View style={styles.profileImageContainer}>
+                <Image
+                    source={{uri: data.userImg}}
+                    style={styles.profileImage}
+                />
+            </View>
+            <Text style={styles.userName}>{data.username}</Text>
+        </View>)
 };
 const styles = StyleSheet.create({
     profileHeader: {

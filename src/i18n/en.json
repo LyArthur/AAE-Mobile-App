@@ -9,10 +9,15 @@
     "errors": {
       "title": "Error",
       "invalidCredentials": "Invalid credentials",
-      "connectionIssues": "Connection issues"
+      "connectionIssues": "Connection issues",
+      "accessDenied": "Access denied"
     }
   },
   "homeScreen": {
+    "title": "Home",
+    "welcome": "Welcome,"
+  },
+  "agendaScreen": {
     "title": "Agenda"
   },
   "profileScreen": {

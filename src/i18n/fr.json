@@ -9,10 +9,15 @@
     "errors": {
       "title": "Erreur",
       "invalidCredentials": "Identifiants incorrects",
-      "connectionIssues": "Problèmes de connexion"
+      "connectionIssues": "Problèmes de connexion",
+      "accessDenied": "Vous n'avez pas l'autorisation d'accéder à cette appplication"
     }
   },
   "homeScreen": {
+    "title": "Accueil",
+    "welcome": "Bienvenue,"
+  },
+  "agendaScreen": {
     "title": "Agenda"
   },
   "profileScreen": {
