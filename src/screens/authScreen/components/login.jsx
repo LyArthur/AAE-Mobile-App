@@ -21,7 +21,6 @@ export const Login = ({ navigation }) => {
                     routes: [{ name: "AuthenticatedNavigator", params: { screen: 'Home' } }]
                 });
             } else {
-                console.log(isAuthenticated);
                 if (isAuthenticated.code === "jwt_auth_forbidden") {
                     Alert.alert(t('errors.title'), t('errors.accessDenied'));
                 } else {
@@ -61,9 +60,7 @@ export const Login = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         width: "100%",
-        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#f8f9fa',
         paddingHorizontal: 20,
