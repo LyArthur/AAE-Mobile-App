@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
         paddingTop: StatusBar.currentHeight,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#f8f9fa',
         gap:10
     },
     buttonContainer: {

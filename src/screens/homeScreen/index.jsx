@@ -1,18 +1,31 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {StyleSheet, Text, View, Button, Image} from 'react-native';
 import * as SecureStore from "expo-secure-store";
 import {useTranslation} from "react-i18next";
+import LoadingScreen from "../loadingScreen";
 
-export const HomeScreen =({navigation}) => {
+export const HomeScreen = ({navigation}) => {
     const [t] = useTranslation("homeScreen");
-    const username = SecureStore.getItem("username");
+    const [username, setUsername] = null;
+    useEffect(() => {
+        const getUsername = async () => {
+            const username = await SecureStore.getItem("username");
+            setUsername(username);
+        }
+        getUsername();
+    }, []);
+    if (username === null) {
+        return (
+            <LoadingScreen/>
+        );
+    }
     return (
         <View style={styles.container}>
             <Image
                 source={require('./images/icon.png')}
                 style={styles.logo}
             />
-            <Text style={styles.welcomeText}>{t('welcome')+" "+username} </Text>
+            <Text style={styles.welcomeText}>{t('welcome') + " " + username} </Text>
             <View style={styles.buttonContainer}>
                 <Button
                     title={t('button.agenda')}
@@ -39,7 +52,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
-        paddingTop:30
+        paddingTop: 30
     },
     logo: {
         width: 150,
@@ -49,11 +62,11 @@ const styles = StyleSheet.create({
     welcomeText: {
         fontSize: 20,
         marginBottom: 30,
-        textTransform:"capitalize"
+        textTransform: "capitalize"
     },
     buttonContainer: {
         width: '80%',
         justifyContent: 'space-between',
-        gap:15
+        gap: 15
     },
 });

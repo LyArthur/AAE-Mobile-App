@@ -1,12 +1,26 @@
 import {StyleSheet, StatusBar, View} from "react-native";
 import {ShowProfile, RenderProfileHeader} from "./components";
 import * as SecureStore from "expo-secure-store";
+import {useEffect} from "react";
+import LoadingScreen from "../loadingScreen";
 
 export const ProfileScreen = ({navigation}) => {
-    const username = SecureStore.getItem("username");
-    const userImg = SecureStore.getItem("userImg");
-    const data = {"username": username, "userImg":userImg};
+    const [data, setData] = null;
+    useEffect(() => {
+        const getData = async () => {
+            const username = await SecureStore.getItem("username");
+            const userImg = await SecureStore.getItem("userImg");
+            const data = {"username": username, "userImg": userImg};
+            setData(data);
+        }
+        getData();
+    }, []);
 
+    if (data === null) {
+        return (
+            <LoadingScreen/>
+        );
+    }
 
     return (
         <View style={styles.container}>
