@@ -15,7 +15,12 @@
   },
   "homeScreen": {
     "title": "Home",
-    "welcome": "Welcome,"
+    "welcome": "Welcome,",
+    "button": {
+      "agenda": "Agenda",
+      "profile": "Profile",
+      "directory": "Directory"
+    }
   },
   "agendaScreen": {
     "title": "Agenda"

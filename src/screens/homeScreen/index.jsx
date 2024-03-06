@@ -15,17 +15,17 @@ export const HomeScreen =({navigation}) => {
             <Text style={styles.welcomeText}>{t('welcome')+" "+username} </Text>
             <View style={styles.buttonContainer}>
                 <Button
-                    title="Agenda"
+                    title={t('button.agenda')}
                     color="#6495ED"
                     onPress={() => navigation.navigate('Agenda')}
                 />
                 <Button
-                    title="Annuaire"
+                    title={t('button.directory')}
                     color="#6495ED"
                     onPress={() => navigation.navigate('AnnuaireContainer')}
                 />
                 <Button
-                    title="Profile"
+                    title={t('button.profile')}
                     color="#6495ED"
                     onPress={() => navigation.navigate('Profile')}
                 />
