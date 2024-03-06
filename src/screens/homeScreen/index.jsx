@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, Text, View, Button, Image} from 'react-native';
 import * as SecureStore from "expo-secure-store";
 import {useTranslation} from "react-i18next";
@@ -6,14 +6,15 @@ import LoadingScreen from "../loadingScreen";
 
 export const HomeScreen = ({navigation}) => {
     const [t] = useTranslation("homeScreen");
-    const [username, setUsername] = null;
+    const [username, setUsername] = useState(null);
     useEffect(() => {
         const getUsername = async () => {
-            const username = await SecureStore.getItem("username");
-            setUsername(username);
+            const dataUsername = await SecureStore.getItemAsync("username");
+            setUsername(dataUsername);
         }
         getUsername();
     }, []);
+
     if (username === null) {
         return (
             <LoadingScreen/>
