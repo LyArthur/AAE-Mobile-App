@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Alert, StyleSheet, Button, TextInput, View } from "react-native";
 import { authenticate } from "../../../api/AAE_api";
 import { useTranslation } from "react-i18next";
+import {setUser} from "../../../functions/setUser";
 
 export const Login = ({ navigation }) => {
     const [username, setUsername] = useState('');
@@ -14,6 +15,7 @@ export const Login = ({ navigation }) => {
             setIsLoading(true);
             const isAuthenticated = await authenticate(username, password);
             if (isAuthenticated === true) {
+                await setUser();
                 navigation.reset({
                     index: 0,
                     routes: [{ name: "AuthenticatedNavigator", params: { screen: 'Home' } }]

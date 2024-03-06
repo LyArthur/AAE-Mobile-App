@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {validateToken} from "../api/AAE_api";
+import {setUser} from "../functions/setUser";
 
 export default function useBeforeLaunching() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -10,6 +11,7 @@ export default function useBeforeLaunching() {
             const isValidToken = await validateToken();
             setIsAuthenticated(isValidToken);
             setIsLoaded(true);
+            await setUser();
         };
         checkAuthentication();
     }, []);

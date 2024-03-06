@@ -75,8 +75,6 @@ export const validateToken = async () => {
             },
         });
         const responseData = await response.json();
-        await SecureStore.setItemAsync("username",responseData.Data.data.username);
-        await SecureStore.setItemAsync("userImg",responseData.Data.data.userImg);
         return responseData.Data.status === 200;
 
     } catch (error){
