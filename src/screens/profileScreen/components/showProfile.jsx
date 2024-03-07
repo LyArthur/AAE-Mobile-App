@@ -25,7 +25,7 @@ export const ShowProfile = ({navigation}) => {
         <ScrollView contentContainerStyle={styles.container}>
             <Button
                 title={t('showProfile')}
-                onPress={() => Linking.openURL(`https://aaedev.com/?jwt=${token}`)}
+                onPress={() => Linking.openURL(`https://academieairespace.com/?jwt=${token}`)}
             />
             <Logout navigation={navigation}/>
         </ScrollView>
@@ -34,8 +34,8 @@ export const ShowProfile = ({navigation}) => {
 
 const styles = StyleSheet.create({
     container: {
-        flexGrow: 1,
+        width: "100%",
         padding: 20,
-        gap:20
+        gap:20,
     }
 });

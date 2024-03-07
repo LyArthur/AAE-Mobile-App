@@ -1,7 +1,7 @@
 import * as SecureStore from "expo-secure-store";
 import {Alert} from "react-native";
 
-const API_BASE_URL = 'https://aaedev.com/extranet-membres/wp-json';
+const API_BASE_URL = 'https://academieairespace.com/extranet-membres/wp-json';
 
 const sendAuthorizedRequest = async (url, method, body = null) => {
     let showAlert = true;

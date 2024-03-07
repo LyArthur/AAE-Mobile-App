@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, Button, Image} from 'react-native';
 import * as SecureStore from "expo-secure-store";
 import {useTranslation} from "react-i18next";

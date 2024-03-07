@@ -6,7 +6,7 @@ import * as Localization from "expo-localization";
 const languageCode = Localization.getLocales()[0].languageCode === "fr" ? "fr" : "en";
 const handleEventPress = async (uri) => {
     const jwtToken = await SecureStore.getItem('jwtToken');
-    Linking.openURL(`https://aaedev.com/?jwt=${jwtToken}&uri=${uri}`);
+    Linking.openURL(`https://academieairespace.com/?jwt=${jwtToken}&uri=${uri}`);
 };
 
 const isSameMonthYear = (date1, date2) => {
