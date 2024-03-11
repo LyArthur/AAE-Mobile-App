@@ -5,7 +5,7 @@ import {ShowEvents} from "./components";
 export const AgendaScreen = ({}) => {
     return (
         <View style={styles.container}>
-            <ShowEvents />
+            <ShowEvents/>
         </View>
     )
 }

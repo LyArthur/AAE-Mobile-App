@@ -1,15 +1,15 @@
-import { View, StyleSheet, StatusBar, Image } from "react-native";
+import {Image, StyleSheet, View} from "react-native";
 import React from "react";
-import { Login } from "./components";
+import {Login} from "./components";
 
-export const AuthScreen = ({ navigation }) => {
+export const AuthScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <View style={styles.upperContainer}>
-                <Image source={require("./images/icon.png")} style={styles.logo} />
+                <Image source={require("./images/icon.png")} style={styles.logo}/>
             </View>
             <View style={styles.lowerContainer}>
-                <Login navigation={navigation} />
+                <Login navigation={navigation}/>
             </View>
         </View>
     )
@@ -39,4 +39,3 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
 });
-export default AuthScreen;

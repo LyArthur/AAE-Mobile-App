@@ -1,6 +1,5 @@
 import {Loading} from "./components";
-import {
-    StyleSheet, View} from "react-native";
+import {StyleSheet, View} from "react-native";
 
 export const LoadingScreen = ({}) => {
     return (
@@ -18,4 +17,3 @@ const styles = StyleSheet.create({
         backgroundColor: '#f8f9fa',
     },
 });
-export default LoadingScreen

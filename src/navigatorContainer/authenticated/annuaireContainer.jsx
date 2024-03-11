@@ -6,11 +6,11 @@ import {useTranslation} from "react-i18next";
 
 const Stack = createNativeStackNavigator();
 export const AnnuaireContainer = () => {
-    const { t } = useTranslation("userDetailsScreen");
+    const {t} = useTranslation("userDetailsScreen");
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Annuaire" component={AnnuaireScreen} options={{headerShown:false}}/>
-            <Stack.Screen name="DetailsUtilisateur" component={DetailsUtilisateur} options={{title:t("title")}}/>
+            <Stack.Screen name="Annuaire" component={AnnuaireScreen} options={{headerShown: false}}/>
+            <Stack.Screen name="DetailsUtilisateur" component={DetailsUtilisateur} options={{title: t("title")}}/>
         </Stack.Navigator>
     );
 }

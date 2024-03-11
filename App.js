@@ -13,7 +13,7 @@ export default function App() {
     const [isLoaded, isAuthenticated] = useBeforeLaunching();
 
     if (!isLoaded) {
-        return <LoadingScreen />;
+        return <LoadingScreen/>;
     }
 
     return (

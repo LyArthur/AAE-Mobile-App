@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, Button, Image} from 'react-native';
+import {Button, Image, StyleSheet, Text, View} from 'react-native';
 import * as SecureStore from "expo-secure-store";
 import {useTranslation} from "react-i18next";
-import LoadingScreen from "../loadingScreen";
+import {LoadingScreen} from "../loadingScreen";
 
 export const HomeScreen = ({navigation}) => {
     const [t] = useTranslation("homeScreen");

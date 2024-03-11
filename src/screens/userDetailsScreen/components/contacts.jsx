@@ -1,6 +1,5 @@
 import React from "react";
-import {StyleSheet, TouchableOpacity, View, Text} from "react-native";
-import {Linking} from 'react-native';
+import {Linking, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 
 export const makePhoneCall = (phoneNumber) => {
     Linking.openURL(`tel:${phoneNumber}`);
@@ -10,7 +9,7 @@ export const sendEmail = (email) => {
     Linking.openURL(`mailto:${email}`);
 };
 
-export const RenderContacts = ({ data }) => {
+export const RenderContacts = ({data}) => {
     const contacts = [];
 
     if (data.user_email) {

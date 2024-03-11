@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import {StyleSheet, TextInput, View} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 import {useTranslation} from "react-i18next";
 
-const SearchBar = ({ value, onChangeText }) => {
-    const { t } = useTranslation("directoryScreen");
+export const SearchBar = ({value, onChangeText}) => {
+    const {t} = useTranslation("directoryScreen");
     return (
         <View style={styles.searchContainer}>
-            <Ionicons name="search" size={20} color="#888" style={styles.searchIcon} />
+            <Ionicons name="search" size={20} color="#888" style={styles.searchIcon}/>
             <TextInput
                 style={styles.input}
                 placeholder={t('searchBar')}
@@ -42,5 +42,3 @@ const styles = StyleSheet.create({
         color: '#1c1c1c',
     },
 });
-
-export default SearchBar;

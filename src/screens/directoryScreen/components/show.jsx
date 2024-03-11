@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
-import { getAnnuaire } from '../../../api/AAE_api';
-import LoadingScreen from '../../loadingScreen';
+import React, {useEffect, useState} from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
+import {getAnnuaire} from '../../../api/AAE_api';
+import {LoadingScreen} from '../../loadingScreen';
 import Item from './item';
-import SearchBar from './searchBar';
+import {SearchBar} from './searchBar';
 
-export const ShowAnnuaire = ({ navigation }) => {
+export const ShowAnnuaire = ({navigation}) => {
     const [data, setData] = useState(null);
     const [filteredData, setFilteredData] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
@@ -34,22 +34,22 @@ export const ShowAnnuaire = ({ navigation }) => {
     };
 
     if (filteredData === null) {
-        return <LoadingScreen />;
+        return <LoadingScreen/>;
     }
 
-    const renderItem = ({ item }) => (
+    const renderItem = ({item}) => (
         <Item
             userId={item.ID}
             email={item.user_email}
             title={item.first_name + ' ' + item.last_name}
             img={item.img}
-            onPress={() => navigation.navigate('DetailsUtilisateur', { userId: item.ID })}
+            onPress={() => navigation.navigate('DetailsUtilisateur', {userId: item.ID})}
         />
     );
 
     return (
         <View style={styles.container}>
-            <SearchBar value={searchQuery} onChangeText={handleSearch} />
+            <SearchBar value={searchQuery} onChangeText={handleSearch}/>
             <FlatList
                 data={filteredData}
                 renderItem={renderItem}

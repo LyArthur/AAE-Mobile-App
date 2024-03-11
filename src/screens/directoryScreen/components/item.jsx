@@ -1,15 +1,15 @@
-import React, { PureComponent } from 'react';
-import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
+import React, {PureComponent} from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 class Item extends PureComponent {
     render() {
-        const { title, email, img, onPress } = this.props;
+        const {title, email, img, onPress} = this.props;
         return (
             <TouchableOpacity
                 style={styles.itemContainer}
                 onPress={onPress}
             >
-                <Image source={{ uri: img }} style={styles.avatar} />
+                <Image source={{uri: img}} style={styles.avatar}/>
                 <View>
                     <Text style={styles.title}>{title}</Text>
                     <Text style={styles.email}>{email}</Text>
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     avatar: {
         width: 50,
         height: 50,
-        borderRadius: 25,
+        borderRadius: 75,
         marginRight: 10,
     },
     title: {

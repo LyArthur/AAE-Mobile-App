@@ -2,7 +2,7 @@ import {StyleSheet, StatusBar, View} from "react-native";
 import {ShowProfile, RenderProfileHeader} from "./components";
 import * as SecureStore from "expo-secure-store";
 import {useEffect, useState} from "react";
-import LoadingScreen from "../loadingScreen";
+import {LoadingScreen} from "../loadingScreen";
 
 export const ProfileScreen = ({navigation}) => {
     const [data, setData] = useState(null);
@@ -41,4 +41,3 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
 });
-export default ProfileScreen

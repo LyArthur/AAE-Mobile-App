@@ -66,7 +66,7 @@ export const authenticate = async (username, password) => {
 };
 
 export const validateToken = async () => {
-    try{
+    try {
         const token = await SecureStore.getItemAsync('jwtToken');
         const response = await fetch(`${API_BASE_URL}/api/token/VALIDATE`, {
             method: 'GET',
@@ -77,7 +77,7 @@ export const validateToken = async () => {
         const responseData = await response.json();
         return responseData.Data.status === 200;
 
-    } catch (error){
+    } catch (error) {
         return false
     }
 };

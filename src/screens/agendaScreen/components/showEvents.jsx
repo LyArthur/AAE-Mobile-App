@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {View, FlatList} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {getEvents} from "../../../api/AAE_api";
 import {Loading} from "../../loadingScreen/components";
-import renderEventItem from './eventItem';
+import {renderEventItem} from './eventItem';
 
 export const ShowEvents = () => {
     const [events, setEvents] = useState([]);
@@ -34,5 +34,3 @@ export const ShowEvents = () => {
         </View>
     );
 };
-
-export default ShowEvents;

@@ -27,7 +27,7 @@
   },
   "profileScreen": {
     "title": "Profil",
-    "showProfile" : "Afficher mon profil",
+    "showProfile": "Afficher mon profil",
     "logout": "Se déconnecter"
   },
   "directoryScreen": {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Linking} from 'react-native';
+import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import * as SecureStore from "expo-secure-store";
 import * as Localization from "expo-localization";
 
@@ -118,5 +118,3 @@ const styles = StyleSheet.create({
         paddingRight: 50
     }
 });
-
-export default renderEventItem;

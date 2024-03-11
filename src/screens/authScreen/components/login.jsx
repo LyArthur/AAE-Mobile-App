@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Alert, StyleSheet, Button, TextInput, View } from "react-native";
-import { authenticate } from "../../../api/AAE_api";
-import { useTranslation } from "react-i18next";
+import React, {useState} from "react";
+import {Alert, Button, StyleSheet, TextInput, View} from "react-native";
+import {authenticate} from "../../../api/AAE_api";
+import {useTranslation} from "react-i18next";
 import {setUser} from "../../../functions/setUser";
 
-export const Login = ({ navigation }) => {
+export const Login = ({navigation}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const { t } = useTranslation("authScreen");
+    const {t} = useTranslation("authScreen");
 
     const handleLogin = async () => {
         try {
@@ -18,7 +18,7 @@ export const Login = ({ navigation }) => {
                 await setUser();
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: "AuthenticatedNavigator", params: { screen: 'Home' } }]
+                    routes: [{name: "AuthenticatedNavigator", params: {screen: 'Home'}}]
                 });
             } else {
                 if (isAuthenticated.code === "jwt_auth_forbidden") {
@@ -52,7 +52,7 @@ export const Login = ({ navigation }) => {
                 editable={!isLoading}
             />
             <View style={styles.buttonContainer}>
-                <Button title={t('login')} onPress={handleLogin} disabled={isLoading} />
+                <Button title={t('login')} onPress={handleLogin} disabled={isLoading}/>
             </View>
         </View>
     );
@@ -78,8 +78,6 @@ const styles = StyleSheet.create({
     buttonContainer: {
         width: '40%',
         alignSelf: 'flex-end',
-        marginRight:20
+        marginRight: 20
     },
 });
-
-export default Login;

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text } from "react-native";
-import LoadingScreen from "../../loadingScreen";
-import { getDetails } from "../../../api/AAE_api";
+import React, {useEffect, useState} from "react";
+import {ScrollView, StyleSheet, Text} from "react-native";
+import {LoadingScreen} from "../../loadingScreen";
+import {getDetails} from "../../../api/AAE_api";
 import {RenderContacts} from "./contacts";
 import {RenderDetailsHeader} from "./detailsHeader";
 
 const cachedData = {};
 
-export const ShowDetails = ({ id }) => {
+export const ShowDetails = ({id}) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ export const ShowDetails = ({ id }) => {
     }, [id]);
 
     if (data === null) {
-        return <LoadingScreen />;
+        return <LoadingScreen/>;
     }
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -46,5 +46,3 @@ const styles = StyleSheet.create({
         padding: 20,
     },
 });
-
-export default ShowDetails;
